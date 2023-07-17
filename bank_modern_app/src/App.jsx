@@ -1,5 +1,5 @@
 import React from "react"
-import styles from "./style"
+import styles from "./styles"
 
 import { Navbar, Billing, CardDeal, Business, Clients, CTA, Stats, Footer, Testimonial, Hero } from "./components"
 
