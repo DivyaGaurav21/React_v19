@@ -1,0 +1,76 @@
+ /* All button have common css  */
+ .btn-container{
+    box-sizing: border-box;
+    /* padding: 20rem; */
+     width: 25vw;
+     max-width: 24vw;
+     min-width: 320px;
+     background-color: #598bb1;
+     background-image: linear-gradient(165deg, #2b618b 0%, #2d558a 74%);
+     padding: 15px 0px  20px 0px;
+     border-radius:0px 0px 7px 7px;
+     box-shadow: inset -3px -3px 7px #ffffff ,-2px -3px 5px 
+     rgba(0,0,0, .29),inset 3px -3px 7px #ffffff;
+     border: 1px solid rgb(133, 135, 230);
+     display: flex;
+     flex-wrap: wrap;
+     align-items: center;
+     justify-content: center;
+     gap: 1rem;
+ }
+ button{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: none;
+    /* margin: 7px; */
+    font-size: 23px;
+    background-color: #c3cbdc;
+    background-image: linear-gradient(147deg, #c3cbdc 0%, #edf1f4 74%);  
+}
+/* on hovering button css  */
+ button:hover{
+    cursor: pointer;
+    background-color: #6b8bf5;
+    background-image: linear-gradient(315deg, #ffffff 0%, #f09f9f 74%);
+    
+}
+/* button container  */
+
+.span-two{
+    width: 95px;
+    border-radius: 45%;
+    height: 50px;
+}
+
+/* output css  */
+.output{
+    width: 24vw;
+    height: 6rem;
+    min-width: 348px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-around;
+    box-sizing: border-box;
+    padding: .75rem;
+    margin-top: 10px;
+    box-shadow: inset 5px 5px 12px #ffffff ,5px 5px 12px 
+    rgba(0,0,0, .29);
+    border-radius:7px 7px 0px 0px;
+    background-color: #ddcad9;
+    background-image: linear-gradient(315deg, #ddcad9 0%, #d1b1cb 74%);
+}
+/* prev operand css  */
+.output .prev-operand{
+    color:black;
+    font-size: 1.2rem;
+     font-family: 'Orbitron', sans-serif;
+}
+/* current operand css  */
+.output .curr-operand{
+    color:black;
+    font-size: 2.3rem;
+    font-weight: 600;
+     font-family: 'Orbitron', sans-serif;
+}
