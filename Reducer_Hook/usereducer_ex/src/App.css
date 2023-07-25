@@ -1,0 +1,15 @@
+/* app body css  */
+body{
+    background: linear-gradient(to right , #e0f0b6 , #94ebec);
+  }
+  /* app class css  */
+  .App{
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+  }
+  .counter{
+    margin-bottom: 20px;
+  }
+

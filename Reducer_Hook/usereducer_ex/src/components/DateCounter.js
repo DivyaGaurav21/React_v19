@@ -83,7 +83,7 @@ const DateCounter = () => {
       </div>
       <p>{date.toDateString()}</p>
       <div>
-        <button onClick={reset}>Rst</button>
+        <button onClick={reset}>Reset</button>
       </div>
     </div>
   )
