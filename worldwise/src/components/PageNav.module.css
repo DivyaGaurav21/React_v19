@@ -1,0 +1,14 @@
+.nav{
+background: #f44336;
+padding: 5px;
+}
+.nav ul{
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+/* .nav :global(a){
+   text-decoration: none;
+} */
