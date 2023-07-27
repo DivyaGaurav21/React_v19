@@ -1,6 +1,10 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import styles from "./City.module.css";
-
+import { useEffect, useState } from "react";
+// import { useCities } from "../contexts/CitiesContext";
+import Spinner from "./Spinner";
+import Button from "./Button";
+const BASE_URL = 'http://localhost:9000';
 const formatDate = (date) =>
   new Intl.DateTimeFormat("en", {
     day: "numeric",
@@ -9,16 +13,42 @@ const formatDate = (date) =>
     weekday: "long",
   }).format(new Date(date));
 
+
+
 function City() {
-  const { id } = useParams()
+  const navigate = useNavigate()
+  const [currentCity, setCurrentCity] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+  const { id } = useParams();
+
+
 
   // TEMP DATA
-  const currentCity = {
-    cityName: "Lisbon",
-    emoji: "🇵🇹",
-    date: "2027-10-31T15:59:59.138Z",
-    notes: "My favorite city so far!",
-  };
+  // const currentCity = {
+  //   cityName: "Lisbon",
+  //   emoji: "🇵🇹",
+  //   date: "2027-10-31T15:59:59.138Z",
+  //   notes: "My favorite city so far!",
+  // };
+  useEffect(() => {
+
+    const getCity = async (id) => {
+      try {
+        setIsLoading(true)
+        const res = await fetch(`${BASE_URL}/cities/${id}`);
+        const data = await res.json();
+        setCurrentCity(data)
+        // console.log(data)
+      } catch {
+        alert("there was an error in fetching data by id")
+      } finally {
+        setIsLoading(false)
+      }
+    }
+    getCity(id)
+  }, [id]);
+
+  if (isLoading) return <Spinner />
 
   const { cityName, emoji, date, notes } = currentCity;
 
@@ -55,7 +85,14 @@ function City() {
       </div>
 
       <div>
-        {/* <ButtonBack /> */}
+        <Button type="back" onClick={
+          (e) => {
+            e.preventDefault();
+            navigate(-1)
+          }
+        }>
+          &larr;Back
+        </Button>
       </div>
     </div>
   );
