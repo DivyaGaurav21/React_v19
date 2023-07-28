@@ -1,10 +1,12 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import styles from "./City.module.css";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 // import { useCities } from "../contexts/CitiesContext";
 import Spinner from "./Spinner";
-import Button from "./Button";
-const BASE_URL = 'http://localhost:9000';
+import BackButton from "./BackButton";
+import { useCities } from "../contexts/CitiesContext";
+
+
 const formatDate = (date) =>
   new Intl.DateTimeFormat("en", {
     day: "numeric",
@@ -16,12 +18,8 @@ const formatDate = (date) =>
 
 
 function City() {
-  const navigate = useNavigate()
-  const [currentCity, setCurrentCity] = useState({});
-  const [isLoading, setIsLoading] = useState(false);
   const { id } = useParams();
-
-
+  const { isLoading, getCity, currentCity } = useCities();
 
   // TEMP DATA
   // const currentCity = {
@@ -31,20 +29,6 @@ function City() {
   //   notes: "My favorite city so far!",
   // };
   useEffect(() => {
-
-    const getCity = async (id) => {
-      try {
-        setIsLoading(true)
-        const res = await fetch(`${BASE_URL}/cities/${id}`);
-        const data = await res.json();
-        setCurrentCity(data)
-        // console.log(data)
-      } catch {
-        alert("there was an error in fetching data by id")
-      } finally {
-        setIsLoading(false)
-      }
-    }
     getCity(id)
   }, [id]);
 
@@ -85,14 +69,7 @@ function City() {
       </div>
 
       <div>
-        <Button type="back" onClick={
-          (e) => {
-            e.preventDefault();
-            navigate(-1)
-          }
-        }>
-          &larr;Back
-        </Button>
+        <BackButton />
       </div>
     </div>
   );

@@ -56,6 +56,7 @@ const BASE_URL = 'http://localhost:9000';
 
 function CitiesProvider({ children }) {
     const [cities, setCities] = useState([]);
+    const [currentCity, setCurrentCity] = useState({});
     const [isLoading, setIsLoading] = useState(false);
 
 
@@ -76,6 +77,19 @@ function CitiesProvider({ children }) {
         fetchCities()
     }, [])
 
+    const getCity = async (id) => {
+        try {
+            setIsLoading(true)
+            const res = await fetch(`${BASE_URL}/cities/${id}`);
+            const data = await res.json();
+            setCurrentCity(data)
+            // console.log(data)
+        } catch {
+            alert("there was an error in fetching data by id")
+        } finally {
+            setIsLoading(false)
+        }
+    }
 
 
     return (
@@ -83,6 +97,9 @@ function CitiesProvider({ children }) {
             value={{
                 cities,
                 isLoading,
+                getCity,
+                currentCity
+
             }}
         >{children}</CitiesContext.Provider>
     );
@@ -90,6 +107,8 @@ function CitiesProvider({ children }) {
 
 function useCities() {
     const context = useContext(CitiesContext);
+    if (context === undefined)
+        throw new Error("CityContext was used outside of the PostProvider");
     return context;
 }
 
