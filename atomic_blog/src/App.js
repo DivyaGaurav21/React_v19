@@ -1,24 +1,15 @@
 import { useEffect, useState } from "react";
-import { faker } from "@faker-js/faker";
-
+import { postData } from "./components/staticData";
 import Header from "./components/Header";
 import Main from "./components/Main";
 import Archive from "./components/Archive";
 
-function createRandomPost() {
-  return {
-    title: `${faker.hacker.adjective()} ${faker.hacker.noun()}`,
-    body: faker.hacker.phrase(),
-  };
-}
 
 
 function App() {
-  const [posts, setPosts] = useState(() =>
-    Array.from({ length: 30 }, () => createRandomPost())
-  );
-  // console.log(posts);
 
+  const [posts, setPosts] = useState(postData);
+  // console.log(posts);
   const [searchQuery, setSearchQuery] = useState("");
   const [isFakeDark, setIsFakeDark] = useState(false);
 
@@ -39,8 +30,6 @@ function App() {
   function handleClearPosts() {
     setPosts([]);
   }
-
-  // Whenever `isFakeDark` changes, we toggle the `fake-dark-mode` class on the HTML element (see in "Elements" dev tool).
   useEffect(
     function () {
       document.documentElement.classList.toggle("fake-dark-mode");
