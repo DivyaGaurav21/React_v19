@@ -85,4 +85,4 @@ const BankPayment = () => {
     )
 }
 
-export default BankPayment
+export default BankPayment;

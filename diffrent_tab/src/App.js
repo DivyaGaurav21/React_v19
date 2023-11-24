@@ -1,6 +1,6 @@
 import React from "react";
-
 import Tabbed from "./components/Tabbed";
+import Apps from './components/useEffectExample/App'
 
 const content = [
   {
@@ -23,7 +23,8 @@ const content = [
 export default function App() {
   return (
     <div>
-      <Tabbed content={content} />
+      {/* <Tabbed content={content} /> */}
+      <Apps />
     </div>
   );
 }

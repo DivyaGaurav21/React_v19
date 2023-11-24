@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.high{
+  background-color: rgb(247, 0, 255);
+}
+.medium{
+  background-color: blue;
+}
+.low{
+  background-color: crimson;
+}
