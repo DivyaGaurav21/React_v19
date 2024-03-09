@@ -1,11 +1,9 @@
 
 *{
-  /* padding: 0; */
-  /* margin: 0; */
   box-sizing: border-box;
 }
 /* CSS */
-.btn {
+button {
   background: #FF4742;
   border: 1px solid #FF4742;
   border-radius: 6px;
@@ -24,22 +22,20 @@
   text-align: center;
   text-rendering: geometricprecision;
   text-transform: none;
-  user-select: none;
-  -webkit-user-select: none;
   touch-action: manipulation;
   vertical-align: middle;
   margin-bottom: 6px;
   margin-top: 6px;
 }
 
-.btn:hover,
-.btn:active {
+button:hover,
+button:active {
   background-color: initial;
   background-position: 0 0;
   color: #FF4742;
 }
 
-.btn:active {
+button:active {
   opacity: .5;
 }
 
@@ -95,4 +91,19 @@ li{
     font-size: 16px;
     color: #FF4742;
 
+  }
+
+  .div{
+    margin: auto;
+    background-color: #ffcaca;
+    margin-top: 200px;
+    border-radius: 100px;
+    border-color: #f44336;
+    width: 400px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+   justify-content: center;
   }

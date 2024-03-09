@@ -1,16 +1,19 @@
 import React from 'react'
-import './App.css'
-// import TodoListId from './components/TodoListId'
-import Validation from './components/Validation'
-// import TodoId from './components/TodoId'
-
+import './App.css';
+import TipBill from './components/tipBill/TipBill';
+// import DateCounter from './components/dateCounter/DateCounter';
+// import Accordion from './components/accordion/Accordion';
+// import StepCount from './components/basicQue/StepCount'
+// import FlashCard from './components/flashCard/FlashCard';
 
 const App = () => {
   return (
     <div>
-      <Validation />
-      {/* <TodoListId /> */}
-      {/* <TodoId /> */}
+      {/* <StepCount/> */}
+      {/* <FlashCard/> */}
+      {/* <DateCounter/> */}
+      {/* <Accordion/> */}
+      <TipBill/>
     </div>
   )
 }
