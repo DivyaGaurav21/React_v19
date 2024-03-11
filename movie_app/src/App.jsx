@@ -1,6 +1,16 @@
 import React, { useState } from "react";
 import Navbar from "./components/NavBar/Navbar";
 import Main from "./components/Main";
+import Logo from "./components/NavBar/Logo";
+import Search from "./components/NavBar/Search";
+import NumResults from "./components/NavBar/NumResults";
+import MovieList from "./components/ListBox/MovieList";
+import WatchedSummary from "./components/WatchedBox/WatchedSummary";
+import WatchedMovieList from "./components/WatchedBox/WatchedMovieList";
+import ReusableBox from "./components/ReusableBox";
+
+// import StarRating from "./components/WatchedBox/StarRating";
+
 
 const tempMovieData = [
   {
@@ -51,11 +61,45 @@ const tempWatchedData = [
 
 export default function App() {
   const [movies, setMovies] = useState(tempMovieData);
+  const [watched, setWatched] = useState(tempWatchedData);
 
   return (
     <>
-      <Navbar movies={movies}/>
-      <Main tempMovieData={tempMovieData} tempWatchedData={tempWatchedData} movies={movies}/>
+      <Navbar>
+        <Logo />
+        <Search />
+        <NumResults movies={movies} />
+      </Navbar>
+      <Main >
+        <ReusableBox>
+          <MovieList movies={movies} />
+        </ReusableBox>
+        <ReusableBox>
+          <WatchedSummary watched={watched} />
+          <WatchedMovieList watched={watched} />
+        </ReusableBox>
+        {/* <ListBox>
+          <MovieList movies={movies} />
+        </ListBox>
+        <WatchedBox >
+          <WatchedSummary watched={watched} />
+          <WatchedMovieList watched={watched} />
+        </WatchedBox> */}
+      </Main>
     </>
   );
 }
+
+
+
+
+// const App = () => {
+//   const [rating , setRating] = useState(0);
+//   return (
+//     <div>
+//       <StarRating defaultRating={rating} onSetRating={setRating} size={24} color="red"/>
+//     </div>
+//   )
+// }
+
+// export default App

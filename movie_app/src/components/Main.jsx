@@ -1,13 +1,10 @@
-import React, { useState } from 'react'
-import ListBox from './ListBox/ListBox';
-import WatchedBox from './WatchedBox/WatchedBox';
+import React from 'react'
 
-const Main = ({ movies }) => {
+const Main = ({ children }) => {
 
     return (
         <main className="flex flex-row justify-around">
-            <ListBox movies={movies} />
-            {/* <WatchedBox tempWatchedData={tempWatchedData} /> */}
+            {children}
         </main>
     )
 }

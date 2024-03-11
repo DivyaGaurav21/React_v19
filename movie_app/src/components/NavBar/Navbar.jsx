@@ -1,14 +1,9 @@
-import React, { useState } from 'react'
-import Logo from './Logo';
-import Search from './Search';
-import NumResults from './NumResults';
+import React from 'react'
 
-const Navbar = ({ movies }) => {
+const Navbar = ({ children }) => {
     return (
         <nav className="bg-yellow-400 flex flex-row justify-between items-center p-5">
-            <Logo />
-            <Search />
-            <NumResults movies={movies} />
+           {children} 
         </nav>
     )
 }
