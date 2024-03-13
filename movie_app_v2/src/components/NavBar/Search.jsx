@@ -1,10 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 
-const Search = () => {
-    const [query, setQuery] = useState("");
+const Search = ( {query, setQuery}) => {
     return (
         <input
-            className="h-9 w-[300px] px-4 rounded-lg border-2 border-red-600"
+            className="h-9 w-[300px] px-4 rounded-lg border-2 border-yellow-600"
             type="text"
             placeholder="Search movies..."
             value={query}

@@ -12,7 +12,7 @@ const WatchedBox = ({ children }) => {
       >
         {isOpen ? "–" : "+"}
       </button>
-      {isOpen && children}
+      {isOpen && <div className=' h-[79vh] overflow-y-scroll child'>{children}</div>}
     </div>
   )
 }

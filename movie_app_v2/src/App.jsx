@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "./components/NavBar/Navbar";
 import Main from "./components/Main";
 import Logo from "./components/NavBar/Logo";
@@ -8,6 +8,7 @@ import MovieList from "./components/ListBox/MovieList";
 import WatchedSummary from "./components/WatchedBox/WatchedSummary";
 import WatchedMovieList from "./components/WatchedBox/WatchedMovieList";
 import ReusableBox from "./components/ReusableBox";
+import MovieDetails from "./components/MovieDetails";
 
 // import StarRating from "./components/WatchedBox/StarRating";
 
@@ -59,24 +60,96 @@ const tempWatchedData = [
   },
 ];
 
+
+// IMDb API Key 
+const KEY = "4cf53355";
+// const tempQuery = "thor";
+
 export default function App() {
-  const [movies, setMovies] = useState(tempMovieData);
-  const [watched, setWatched] = useState(tempWatchedData);
+  const [movies, setMovies] = useState([]);
+  const [query, setQuery] = useState("thor");
+  const [watched, setWatched] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const [selectedId, setSelectedId] = useState(null);
+
+
+  useEffect(() => {
+    async function fetchMovie() {
+      try {
+        setIsLoading(true);
+        setError("");
+        const res = await fetch(`http://www.omdbapi.com/?apikey=${KEY}&s=${query}`);
+        if (!res.ok) throw new Error("something went wrong");
+        const data = await res.json();
+
+        if (data.Response === "False") throw new Error("Movie not found");
+
+        setMovies(data.Search);
+      } catch (err) {
+        console.log(err.message);
+        setError(err.message);
+      } finally {
+        setIsLoading(false);
+      }
+
+      if (query.length < 3) {
+        setMovies([]);
+        setError("");
+        return;
+      }
+
+    }
+    fetchMovie();
+  }
+    , [query]);
+
+  const handleCloseMovieDetails = () => {
+    setSelectedId(null);
+  }
+
+  const movieDetailsHandler = (id) => {
+    setSelectedId(id === selectedId ? null : id);
+  }
+
+  const handleWatchedMovie = (movie) => {
+    setWatched(watched => [...watched, movie]);
+  }
+
+  const handleDeleteWatchedMovie = (id) => {
+    const afterDeleted = watched.filter(movie => movie.imdbID !== id);
+    setWatched(afterDeleted);
+  }
 
   return (
     <>
       <Navbar>
         <Logo />
-        <Search />
+        <Search query={query} setQuery={setQuery} />
         <NumResults movies={movies} />
       </Navbar>
       <Main >
         <ReusableBox>
-          <MovieList movies={movies} />
+          {/* {isLoading ? "LOADING..." : <MovieList movies={movies} />} */}
+          {isLoading && "LOADING..."}
+          {!isLoading && !error && <MovieList movies={movies} movieDetailsHandler={movieDetailsHandler} />}
+          {error && `ERROR COMPONENT--> ${error}`}
         </ReusableBox>
         <ReusableBox>
-          <WatchedSummary watched={watched} />
-          <WatchedMovieList watched={watched} />
+          {selectedId ?
+            <MovieDetails
+              selectedId={selectedId}
+              onCloseMovie={handleCloseMovieDetails}
+              onAddWatched={handleWatchedMovie}
+              watched={watched}
+            /> : <>
+              <WatchedSummary watched={watched} />
+              <WatchedMovieList
+                watched={watched}
+                onDeleteMovie={handleDeleteWatchedMovie}
+              />
+            </>}
         </ReusableBox>
         {/* <ListBox>
           <MovieList movies={movies} />
