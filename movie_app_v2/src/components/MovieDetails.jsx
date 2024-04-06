@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import StarRating from './WatchedBox/StarRating';
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 const KEY = "4cf53355";
 
@@ -51,19 +53,19 @@ const MovieDetails = ({ selectedId, onCloseMovie, onAddWatched, watched }) => {
   }, [selectedId]);
 
   useEffect(() => {
-   document.title = `Movie | ${Title}`
+    document.title = `Movie | ${Title}`
 
-   return function (){
-    document.title = "Movie App"
-   }
+    return function () {
+      document.title = "Movie App"
+    }
 
-  } , [Title]);
+  }, [Title]);
 
   return (
     <div className="bg-gray-100 py-6 px-4 sm:px-6 lg:px-8">
       <button onClick={onCloseMovie} className="bg-gray-800 text-white font-semibold py-2 px-4 rounded-xl mb-6">Go Back</button>
       <div className="max-w-7xl mx-auto">
-        {isLoading ? "LOADING...." :
+        {isLoading ? <Skeleton count={1} style={{ height: "450px", background: "grey" }} /> :
           <div className="bg-white shadow-md rounded-lg overflow-hidden">
             <header className="flex items-center justify-between px-6 py-4 bg-gray-800 text-white">
               <img src={Poster} alt={`Poster of ${Title}`} className="w-32 h-auto" />

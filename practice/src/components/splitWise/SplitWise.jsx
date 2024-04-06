@@ -1,5 +1,5 @@
 import { useState } from "react";
-import './splitWise.css';git 
+import './splitWise.css'; 
 
 const initialFriends = [
   {
