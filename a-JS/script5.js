@@ -135,3 +135,63 @@
 // console.time();
 // console.log(factorialFunction(10));
 // console.timeEnd();
+
+// ------------POLYFILL-------------//
+// MAP 
+// const arr = [1, 2, 3, 4, 5];
+
+// Array.prototype.myMap = function (callBack) {
+//     let finalArr = [];
+//  for (let i = 0; i < this.length; i++) {
+// finalArr.push(callBack(this[i]));
+//  }
+//  return finalArr;
+// };
+
+// let res = arr.myMap((el) => el * 2);
+// console.log(res); //[2,4,6,8,10]
+
+
+// =====================//
+// reducer 
+// const arr = [1, 2, 3, 4, 5, 6]; 
+// function callback(ele) { 
+// 	if (ele % 2 == 0) { 
+// 		return true; 
+// 	} 
+//  return false; 
+// } 
+// Array.prototype.myReduce = function (callback, sum) { 
+// 	for (const i in this) { 
+// 		if (callback(this[i])) { 
+// 			sum += this[i]; 
+// 		} 
+// 	} 
+// 	return sum; 
+// }; 
+// const sum = arr.myReduce(callback, 0); 
+// console.log(sum);
+
+// ======================================//
+// filter 
+const arr = [1,2,3,4,5,6];
+Array.prototype.myFilter = function (cb) {
+let res = [];
+for(const i in this){
+   if(cb(this[i])){
+        res.push(this[i]);
+        }
+    }
+return res;
+}
+const res = arr.myFilter((el)=> el > 2);
+console.log(res);
+
+const r = arr.map((el) => el/2);
+
+// ==========================================//
+
+
+
+
+

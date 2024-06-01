@@ -1,12 +1,14 @@
 import React from "react";
 // import UseStateHooks from "./components/UseStateHooks";
-import UseMemoHooks from "./components/UseMemoHooks";
+// import UseMemoHooks from "./components/UseMemoHooks";
+import UseRefHooks from "./components/UseRefHooks";
 
 const App = () => {
   return (
     <div>
       {/* <UseStateHooks /> */}
-      <UseMemoHooks />
+      {/* <UseMemoHooks /> */}
+      <UseRefHooks/>
     </div>
   );
 };
@@ -112,3 +114,24 @@ export default App;
 // };
 
 // export default App;
+
+
+// =========================Context Api============================= //
+// import React from 'react'
+// import ThemeProvider from './contextApi/ThemeProvider'
+// import Header from './contextApi/Header'
+// import Content from './contextApi/Content'
+
+
+// const App = () => {
+//   return (
+//     <ThemeProvider>
+//     <div>
+//       <Header/>
+//       <Content/>
+//     </div>
+//     </ThemeProvider>
+//   )
+// }
+
+// export default App

@@ -37,6 +37,12 @@ function PostProvider({ children }) {
         setPosts([]);
     }
 
+    const handleDeleteSinglePost = (postTitle) => {
+        setPosts((prevPosts) =>
+            prevPosts.filter((post) => post.title !== postTitle)
+        );
+    };
+
     return (
         <PostContext.Provider
             value={{
@@ -45,8 +51,10 @@ function PostProvider({ children }) {
                 onClearPosts: handleClearPosts,
                 searchQuery,
                 setSearchQuery,
+                onDeleteSinglePost: handleDeleteSinglePost
             }}
-        >{children}</PostContext.Provider>
+        >{children}
+        </PostContext.Provider>
     )
 }
 

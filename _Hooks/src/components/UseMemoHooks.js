@@ -79,41 +79,41 @@
 // ===============================================================//
 // ==============================================================//
 
-// import React, { useState , useMemo } from "react";
+import React, { useState , useMemo } from "react";
 
-// const UseMemoHooks = () => {
-//   const [number, setNumber] = useState(0);
-//   const [dark, setDark] = useState(false);
+const UseMemoHooks = () => {
+  const [number, setNumber] = useState(0);
+  const [dark, setDark] = useState(false);
 
-//   const doubleNumber = useMemo(() => {
-//     return slowFunction(number);
-//   } , [number]);
+  const doubleNumber = (() => {
+    return slowFunction(number);
+  } );
 
-//   const themeStyles = {
-//     backgroundColor: dark ? "black" : "white",
-//     color: dark ? "white" : "black",
-//   };
+  const themeStyles = {
+    backgroundColor: dark ? "black" : "white",
+    color: dark ? "white" : "black",
+  };
 
-//   function slowFunction(number) {
-//     console.log("calling slow function");
-//     for (let i = 0; i < 1000000000; i++) {}
-//     return number * 2;
-//   }
+  function slowFunction(number) {
+    console.log("calling slow function");
+    for (let i = 0; i < 1000000000; i++) {}
+    return number * 2;
+  }
 
-//   return (
-//     <>
-//       <input
-//         type="number"
-//         value={number}
-//         onChange={(e) => setNumber(parseInt(e.target.value))}
-//       />
-//       <button onClick={() => setDark(prevDark => !prevDark)}>Change Theme</button>
-//       <div style={themeStyles}>{doubleNumber}</div>
-//     </>
-//   );
-// };
+  return (
+    <>
+      <input
+        type="number"
+        value={number}
+        onChange={(e) => setNumber(parseInt(e.target.value))}
+      />
+      <button onClick={() => setDark(prevDark => !prevDark)}>Change Theme</button>
+      <div style={themeStyles}>{doubleNumber}</div>
+    </>
+  );
+};
 
-// export default UseMemoHooks;
+export default UseMemoHooks;
 
 //----------------Code 2 ------------------------//
 
@@ -125,13 +125,15 @@
 
 //   // Expensive computation: find double
 //   const calculateDouble = (num) => {
-//     for (let i = 0; i < 1000000000; i++) {}
-//     console.log("Expensive operation");
+//     // console.log("AAAAAAa")
+//     // for (let i = 0; i < 1000000000; i++) {}
+//     // console.log("Expensive operation");
 //     return num * 2;
 //   };
 
 //   // Memoize the result of calculateDouble function
-//   const memoizeDouble = useMemo(() => calculateDouble(number), [number]);
+//   const memoizeDouble = (() => calculateDouble(number));
+//   console.log(memoizeDouble());
 
 //   return (
 //     <div>
@@ -157,27 +159,3 @@
 
 // export default UseMemoHooks;
 
-// -----------------Code 3---------------------//
-import React from "react";
-import Typewriter from "typewriter-effect";
-
-const animatedTextArray = ["Divya", "Gaurav", "Saurav"];
-
-const TypeWriteText = () => {
-  return (
-    <h1 >
-      Innovating Tomorrow's Tech Today: A Global Leader in
-      <span>
-        <Typewriter
-          options={{
-            strings: animatedTextArray,
-            autoStart: true,
-            loop: true,
-          }}
-        />
-      </span>
-    </h1>
-  );
-};
-
-export default TypeWriteText;
