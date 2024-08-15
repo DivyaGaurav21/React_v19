@@ -1,14 +1,18 @@
 import React from "react";
+import Callback2 from "./components/useCallback/Callback2";
+// import Callback1 from "./components/useCallback/Callback1";
 // import UseStateHooks from "./components/UseStateHooks";
 // import UseMemoHooks from "./components/UseMemoHooks";
-import UseRefHooks from "./components/UseRefHooks";
+// import UseRefHooks from "./components/UseRefHooks";
 
 const App = () => {
   return (
     <div>
       {/* <UseStateHooks /> */}
       {/* <UseMemoHooks /> */}
-      <UseRefHooks/>
+      {/* <UseRefHooks/> */}
+      {/* <Callback1/> */}
+      <Callback2 />
     </div>
   );
 };
@@ -115,13 +119,11 @@ export default App;
 
 // export default App;
 
-
 // =========================Context Api============================= //
 // import React from 'react'
 // import ThemeProvider from './contextApi/ThemeProvider'
 // import Header from './contextApi/Header'
 // import Content from './contextApi/Content'
-
 
 // const App = () => {
 //   return (
