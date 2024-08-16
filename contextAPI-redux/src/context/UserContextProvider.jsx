@@ -14,15 +14,21 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const signup = ({ name, email, password }) => {
+    const userKey = `user_${email}`;
+    if (localStorage.getItem(userKey)) {
+      alert('User already exists!');
+      return;
+    }
     const userCredentials = { name, email, password };
-    localStorage.setItem('userCredentials', JSON.stringify(userCredentials));
+    localStorage.setItem(userKey, JSON.stringify(userCredentials));
     alert('Sign-up successful! You can now log in.');
   };
 
   const login = ({ email, password }) => {
-    const savedCredentials = JSON.parse(localStorage.getItem('userCredentials'));
+    const userKey = `user_${email}`;
+    const savedCredentials = JSON.parse(localStorage.getItem(userKey));
 
-    if (savedCredentials && email === savedCredentials.email && password === savedCredentials.password) {
+    if (savedCredentials && password === savedCredentials.password) {
       const userData = { name: savedCredentials.name, email };
       setUser(userData);
       localStorage.setItem('user', JSON.stringify(userData));

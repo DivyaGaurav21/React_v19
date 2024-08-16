@@ -16,7 +16,7 @@
 // export default App;
 
 // ================================//
-// by using context custom  Hooks 
+// by using context custom  Hooks
 
 // import React from 'react';
 // import { useCounter } from './context/CountContextProvider';
@@ -59,14 +59,74 @@
 // ===============================//
 // by using Auth Context
 
+// import React, { useState } from 'react';
+// import { useUserAuth } from './context/UserContextProvider';
+// import SignUp from './components/SignUp';
+// import LogIn from './components/Login';
+// import Profile from './components/Profile';
+
+// const App = () => {
+//   const { user } = useUserAuth();
+//   const [showSignUp, setShowSignUp] = useState(true);
+
+//   const toggleForm = () => {
+//     setShowSignUp(prev => !prev);
+//   };
+
+//   if (user) {
+//     return <Profile />;
+//   }
+
+//   return (
+//     <div className="flex justify-center items-center">
+//       {showSignUp ? (
+//         <div className='flex flex-col gap-2'>
+//           <SignUp />
+//           <p className="mt-4 text-center text-gray-600">
+//             Already have an account?
+//             <button
+//               onClick={toggleForm}
+//               className="ml-2 text-blue-500 hover:underline"
+//             >
+//               Sign In
+//             </button>
+//           </p>
+//         </div>
+//       ) : (
+//         <div className='flex flex-col gap-2'>
+//           <LogIn />
+//           <p className="mt-4 text-center text-gray-600">
+//             Don't have an account?
+//             <button
+//               onClick={toggleForm}
+//               className="ml-2 text-blue-500 hover:underline"
+//             >
+//               Sign Up
+//             </button>
+//           </p>
+//         </div>
+//       )}
+//     </div>
+//   );
+// };
+
+// export default App;
+
+// ============================//
+// Cart Example 
 import React from 'react'
-import { useUserAuth } from './context/UserContextProvider'
+import ItemList from './components/ItemList';
+import Cart from './components/Cart';
 
 const App = () => {
-  const userContext = useUserAuth();
-  
   return (
-    <div>App</div>
+    <div className="min-h-screen bg-gray-100 p-8">
+      <h1 className="text-4xl font-bold mb-8 text-center">Shopping Cart Example</h1>
+      <div className="flex justify-between">
+        <ItemList />
+        <Cart />
+      </div>
+    </div>
   )
 }
 

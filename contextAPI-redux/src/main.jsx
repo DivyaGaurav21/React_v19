@@ -7,7 +7,7 @@
 // createRoot(document.getElementById('root')).render(
 //   <StrictMode>
 //     <CountContextProvider>
-//     <App /> 
+//     <App />
 //     </CountContextProvider>
 //   </StrictMode>,
 // )
@@ -26,16 +26,30 @@
 //   </StrictMode>,
 // )
 
+// import { StrictMode } from 'react'
+// import { createRoot } from 'react-dom/client'
+// import App from './App.jsx'
+// import './index.css'
+// import { AuthProvider } from './context/UserContextProvider.jsx'
+
+// createRoot(document.getElementById('root')).render(
+//   <StrictMode>
+//     <AuthProvider>
+//       <App />
+//     </AuthProvider>
+//   </StrictMode>,
+// )
+
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
-import { AuthProvider } from './context/UserContextProvider.jsx'
+import { CartProvider } from './context/CartContextProvider.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <AuthProvider>
+    <CartProvider>
       <App />
-    </AuthProvider>
+    </CartProvider>
   </StrictMode>,
 )
