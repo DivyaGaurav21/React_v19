@@ -1,54 +1,47 @@
-// The useCallback hook in React is used to memoize a function, preventing it from being re-created on every render unless one of its dependencies changes. This can be beneficial for performance optimization, especially when passing functions as props to child components that rely on reference equality to prevent unnecessary re-renders.
-
-//---------------------------------------------------------------------//
-
 //----WITHOUT USING CALLBACK HOOKS----//
+// first we can handle unwanted render of child component with react memo but if you pass props 
+// to child components then it can not be optimize by memo because here function props is recreated 
+// every times means different references is created on every render, so child components notice
+//  props is changes , and we know that if props will change react automatically re-render that component ,
+//  so we use here useCallback hooks to prevent unwanted render of child components , or we can give 
+// dependencies to call back , so that function will be re-created when dependency will change. 
+// like you know For simple apps when i use useCallback hooks, the performance benefit might be negligible
+// but in larger applications this hook wii give good impact on performance.
 
-// import React, { useState } from 'react';
 
-// const ChildComponent = ({ onClick }) => {
-//     console.log('Child component rendered');
-//     return (
-//         <button onClick={onClick}>Increment</button>
-//     );
-// };
+// import React, { useState } from "react";
+// import ChildComp from "./ChildComp";
 
-// const  Callback1 = () => {
-//     const [count, setCount] = useState(0);
-//     const [value, setValue] = useState('');
+// const Callback1 = () => {
+//   const [count, setCount] = useState(0);
+//   const [value, setValue] = useState("");
 
-//     const handleClick = () => {
-//         setCount(count + 1);
-//     };
+//   const handleClick = () => {
+//     setCount(count + 1);
+//   };
 
-//     return (
-//         <div>
-//             <input
-//                 type="text"
-//                 value={value}
-//                 onChange={(e) => setValue(e.target.value)}
-//             />
-//             <p>Count: {count}</p>
-//             <ChildComponent onClick={handleClick} />
-//         </div>
-//     );
+//   return (
+//     <div>
+//       <input
+//         type="text"
+//         value={value}
+//         onChange={(e) => setValue(e.target.value)}
+//       />
+//       <p>Input Value : {value}</p>
+//       <p>Count: {count}</p>
+//       {/* <ChildComp/> */}
+//       <ChildComp handleClick={handleClick} />
+//     </div>
+//   );
 // };
 
 // export default Callback1;
 
-// In this example, every time the parent component re-renders
-// (e.g., when the input value changes), a new handleClick function
-//  is created. This causes the child component to re-render, even though
-//  it might not be necessary.
 
 //---- WITH USING CALLBACK HOOKS -----//
 
 import React, { useCallback, useState } from "react";
-
-const ChildComponent = React.memo(({ onClick }) => {
-  console.log("Child component rendered");
-  return <button onClick={onClick}>Increment</button>;
-});
+import ChildComp from "./ChildComp";
 
 const Callback1 = () => {
   const [count, setCount] = useState(0);
@@ -65,17 +58,11 @@ const Callback1 = () => {
         value={value}
         onChange={(e) => setValue(e.target.value)}
       />
+      <p>input value : {value}</p>
       <p>Count: {count}</p>
-      <ChildComponent onClick={handleClick} />
+      <ChildComp handleClick={handleClick} />
     </div>
   );
 };
 
 export default Callback1;
-
-
-// In this version, handleClick is memoized using useCallback. The function 
-// will only be re-created when count changes. As a result, the 
-// ChildComponent will not re-render when the input value changes, since 
-// handleClick maintains the same reference, and React.memo prevents the 
-// child component from re-rendering unless its props change.

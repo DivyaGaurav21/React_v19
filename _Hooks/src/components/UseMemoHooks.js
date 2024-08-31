@@ -79,83 +79,85 @@
 // ===============================================================//
 // ==============================================================//
 
-import React, { useState , useMemo } from "react";
-
-const UseMemoHooks = () => {
-  const [number, setNumber] = useState(0);
-  const [dark, setDark] = useState(false);
-
-  const doubleNumber = (() => {
-    return slowFunction(number);
-  } );
-
-  const themeStyles = {
-    backgroundColor: dark ? "black" : "white",
-    color: dark ? "white" : "black",
-  };
-
-  function slowFunction(number) {
-    console.log("calling slow function");
-    for (let i = 0; i < 1000000000; i++) {}
-    return number * 2;
-  }
-
-  return (
-    <>
-      <input
-        type="number"
-        value={number}
-        onChange={(e) => setNumber(parseInt(e.target.value))}
-      />
-      <button onClick={() => setDark(prevDark => !prevDark)}>Change Theme</button>
-      <div style={themeStyles}>{doubleNumber}</div>
-    </>
-  );
-};
-
-export default UseMemoHooks;
-
-//----------------Code 2 ------------------------//
-
 // import React, { useState, useMemo } from "react";
 
 // const UseMemoHooks = () => {
 //   const [number, setNumber] = useState(0);
-//   const [count, setCount] = useState(1);
+//   const [dark, setDark] = useState(false);
 
-//   // Expensive computation: find double
-//   const calculateDouble = (num) => {
-//     // console.log("AAAAAAa")
-//     // for (let i = 0; i < 1000000000; i++) {}
-//     // console.log("Expensive operation");
-//     return num * 2;
+//   const doubleNumber = useMemo(() => {
+//     return slowFunction(number);
+//   },[number]);
+
+//   const themeStyles = {
+//     backgroundColor: dark ? "black" : "white",
+//     color: dark ? "white" : "black",
+//     padding: "20px"
 //   };
 
-//   // Memoize the result of calculateDouble function
-//   const memoizeDouble = (() => calculateDouble(number));
-//   console.log(memoizeDouble());
+//   function slowFunction(number) {
+//     console.log("calling slow function");
+//     for (let i = 0; i < 1000000000; i++) {} //9 zero
+//     return number * 2;
+//   }
 
 //   return (
-//     <div>
-//       <h2>Factorial Calculator</h2>
-//       <label>
-//         Enter a number:
-//         <input
-//           type="number"
-//           value={number}
-//           onChange={(e) => setNumber(parseInt(e.target.value))}
-//         />
-//       </label>
-//       <p>
-//         {/* Double of {number} is: <strong>{calculateDouble(number)}</strong> */}
-//         Double of {number} is: <strong>{memoizeDouble}</strong>
-//       </p>
-//       <button onClick={() => setCount((prev) => prev - 1)}>-</button>
-//       count id {count}
-//       <button onClick={() => setCount((prev) => prev + 1)}>+</button>
-//     </div>
+//     <>
+//       <input
+//         type="number"
+//         value={number}
+//         onChange={(e) => setNumber(parseInt(e.target.value))}
+//       />
+//       <button onClick={() => setDark(prevDark => !prevDark)}>Change Theme</button>
+//       {/* <div style={themeStyles}>{doubleNumber()}</div> */}
+//       <div style={themeStyles}>{doubleNumber}</div>
+//     </>
 //   );
 // };
 
 // export default UseMemoHooks;
+
+
+//----------------Code 2 ------------------------//
+
+import React, { useState, useMemo } from "react";
+
+const UseMemoHooks = () => {
+  const [number, setNumber] = useState(0);
+  const [count, setCount] = useState(1);
+
+  // Expensive computation: find double
+  const calculateDouble = (num) => {
+       console.log("Expensive operation");
+    for (let i = 0; i < 1000000000; i++) {} //9 zero
+    return num * 2;
+  };
+
+  // Memoize the result of calculateDouble function
+  const memoizeDouble = (() => calculateDouble(number));
+  console.log(memoizeDouble());
+
+  return (
+    <div>
+      <h2>Factorial Calculator</h2>
+      <label>
+        Enter a number:
+        <input
+          type="number"
+          value={number}
+          onChange={(e) => setNumber(parseInt(e.target.value))}
+        />
+      </label>
+      <p>
+        {/* Double of {number} is: <strong>{calculateDouble(number)}</strong> */}
+        Double of {number} is: <strong>{memoizeDouble}</strong>
+      </p>
+      <button onClick={() => setCount((prev) => prev - 1)}>-</button>
+      count is {count}
+      <button onClick={() => setCount((prev) => prev + 1)}>+</button>
+    </div>
+  );
+};
+
+export default UseMemoHooks;
 

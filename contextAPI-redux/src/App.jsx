@@ -47,7 +47,7 @@
 //   return (
 //     <div>
 //       <p className={`${theme === "light" ? "text-black bg-slate-200" : "text-red-400 bg-yellow-300"} p-4`}>
-//           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus, qui. Hic explicabo nisi sapiente animi ipsa dolorum molestias commodi incidunt.
+//           Lorem ipsum dolor sit, amet consectetur adipisicing elit.
 //       </p>
 //       <button onClick={toggleTheme}>Toggle Theme</button>
 //     </div>

@@ -1,18 +1,18 @@
 import React from "react";
-import Callback2 from "./components/useCallback/Callback2";
+// import Callback2 from "./components/useCallback/Callback2";
 // import Callback1 from "./components/useCallback/Callback1";
 // import UseStateHooks from "./components/UseStateHooks";
-// import UseMemoHooks from "./components/UseMemoHooks";
+import UseMemoHooks from "./components/UseMemoHooks";
 // import UseRefHooks from "./components/UseRefHooks";
 
 const App = () => {
   return (
     <div>
       {/* <UseStateHooks /> */}
-      {/* <UseMemoHooks /> */}
+      <UseMemoHooks />
       {/* <UseRefHooks/> */}
       {/* <Callback1/> */}
-      <Callback2 />
+      {/* <Callback2 /> */}
     </div>
   );
 };
