@@ -1,5 +1,11 @@
+import Counter from "./problem-one/Counter";
+import ImageGalleryDetail from "./problem-one/ImageGalleryDetail";
+
 function App() {
-  return <h1>Hello World!</h1>;
+  return <>
+    <p>dddd</p>
+    <Counter />
+  </>
 }
 
 export default App;
