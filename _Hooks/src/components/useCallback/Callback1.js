@@ -27,9 +27,8 @@
 //         value={value}
 //         onChange={(e) => setValue(e.target.value)}
 //       />
-//       <p>Input Value : {value}</p>
+//       {/* <p>Input Value : {value}</p> */}
 //       <p>Count: {count}</p>
-//       {/* <ChildComp/> */}
 //       <ChildComp handleClick={handleClick} />
 //     </div>
 //   );

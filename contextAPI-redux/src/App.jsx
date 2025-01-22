@@ -114,20 +114,77 @@
 
 // ============================//
 // Cart Example 
-import React from 'react'
-import ItemList from './components/ItemList';
-import Cart from './components/Cart';
+// import React from 'react'
+// import ItemList from './components/ItemList';
+// import Cart from './components/Cart';
+
+// const App = () => {
+//   return (
+//     <div className="min-h-screen bg-gray-100 p-8">
+//       <h1 className="text-4xl font-bold mb-8 text-center">Shopping Cart Example</h1>
+//       <div className="flex justify-between">
+//         <ItemList />
+//         <Cart />
+//       </div>
+//     </div>
+//   )
+// }
+
+// export default App
+
+
+// TODO LIST BY USE REDUCER 
+
+// src/App.js
+import React, { useReducer } from 'react';
+import AddTodoForm from './components/todoComp/AddTodoForm';
+import TodoList from './components/todoComp/TodoList';
+
+// Initial state with predefined todos
+export const initialState = [
+  { id: 1, text: "Learn React" },
+  { id: 2, text: "Build Todo App" },
+];
+
+// Reducer function to handle actions
+export const todoReducer = (state, action) => {
+  switch (action.type) {
+    case 'ADD_TODO':
+      return [...state, action.payload];
+
+    case 'EDIT_TODO':
+      return state.map((todo) =>
+        todo.id === action.payload.id ? { ...todo, text: action.payload.text } : todo
+      );
+
+    case 'DELETE_TODO':
+      return state.filter((todo) => todo.id !== action.payload);
+
+    default:
+      return state;
+  }
+};
+
 
 const App = () => {
-  return (
-    <div className="min-h-screen bg-gray-100 p-8">
-      <h1 className="text-4xl font-bold mb-8 text-center">Shopping Cart Example</h1>
-      <div className="flex justify-between">
-        <ItemList />
-        <Cart />
-      </div>
-    </div>
-  )
-}
+  const [todos, dispatch] = useReducer(todoReducer, initialState);
 
-export default App
+  const handleAddTodo = (newTodo) => {
+    dispatch({ type: 'ADD_TODO', payload: newTodo });
+  };
+  const handleEditTodo = (updatedTodo) => {
+    dispatch({ type: 'EDIT_TODO', payload: updatedTodo });
+  };
+  const handleDeleteTodo = (id) => {
+    dispatch({ type: 'DELETE_TODO', payload: id });
+  };
+
+  return (
+    <div>
+      <AddTodoForm onAdd={handleAddTodo} />
+      <TodoList todos={todos} onEdit={handleEditTodo} onDelete={handleDeleteTodo} />
+    </div>
+  );
+};
+
+export default App;
